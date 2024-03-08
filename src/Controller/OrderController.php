@@ -32,7 +32,7 @@ class OrderController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($order);
             $entityManager->flush();
-
+            $this->addFlash('success', 'Ordre creact successfully');
             return $this->redirectToRoute('app_order_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -58,6 +58,7 @@ class OrderController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
+            $this->addFlash('info', 'Ordre modifié avec succès');
 
             return $this->redirectToRoute('app_order_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -74,6 +75,8 @@ class OrderController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$order->getId(), $request->request->get('_token'))) {
             $entityManager->remove($order);
             $entityManager->flush();
+            $this->addFlash('success', 'Ordre delete successfully');
+
         }
 
         return $this->redirectToRoute('app_order_index', [], Response::HTTP_SEE_OTHER);

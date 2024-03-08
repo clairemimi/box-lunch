@@ -32,6 +32,8 @@ class StatusController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($status);
             $entityManager->flush();
+            $this->addFlash('success', 'Status creact successfully');
+            
 
             return $this->redirectToRoute('app_status_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -58,6 +60,7 @@ class StatusController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
+            $this->addFlash('success', 'Status has been updated');
 
             return $this->redirectToRoute('app_status_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -74,6 +77,10 @@ class StatusController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$status->getId(), $request->request->get('_token'))) {
             $entityManager->remove($status);
             $entityManager->flush();
+            $this->addFlash('success', 'Status deleted successfully');
+
+
+
         }
 
         return $this->redirectToRoute('app_status_index', [], Response::HTTP_SEE_OTHER);

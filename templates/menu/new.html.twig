@@ -1,9 +1,18 @@
 {% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
 
 {% block title %}New Menu{% endblock %}
 
 {% block body %}
     <h1>Create new Menu</h1>
+   
+{% set menuContent %}
+     <div class="form-group">
+    <label for="manu" class="col-sm-2 control-label">Menu: </label>
+    {{form_widget(form.name)}}
+   <div class="col-sm-10">
+{% endset %}
+{{ menuContent }}
 
     {{ include('menu/_form.html.twig') }}
 

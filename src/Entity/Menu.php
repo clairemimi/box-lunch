@@ -32,6 +32,10 @@ class Menu
     #[ORM\ManyToMany(targetEntity: Order::class, mappedBy: 'menu')]
     private Collection $orders;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $image = null;
+    // private $imageData;
+
     public function __construct()
     {
         $this->orders = new ArrayCollection();
@@ -113,6 +117,18 @@ class Menu
         if ($this->orders->removeElement($order)) {
             $order->removeMenu($this);
         }
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): static
+    {
+        $this->image = $image;
 
         return $this;
     }

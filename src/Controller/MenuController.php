@@ -32,6 +32,7 @@ class MenuController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($menu);
             $entityManager->flush();
+            $this->addFlash('success', 'Menu creact successfully');
 
             return $this->redirectToRoute('app_menu_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -58,6 +59,7 @@ class MenuController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
+            $this->addFlash('success', 'Menu has been updated');
 
             return $this->redirectToRoute('app_menu_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -74,8 +76,38 @@ class MenuController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$menu->getId(), $request->request->get('_token'))) {
             $entityManager->remove($menu);
             $entityManager->flush();
+            $this->addFlash('success', 'Menu delete successfully');
+
         }
 
         return $this->redirectToRoute('app_menu_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    // #[Route('/menu/{image}', name: 'app_menu_image', methods: ['POST'])]
+    // public function uploadImage(Request $request): Response
+    // {
+    //     $image = new Image();
+    //     $form = $this->createForm(ImageType::class, $image);
+    //     $form->handleRequest($request);
+
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         $imageFile = $form->get('imageFile')->getData();
+    //         if ($imageFile) {
+    //             // Convertir le fichier image en données binaires
+    //             $imageData = file_get_contents($imageFile);
+    //             $image->setImageData($imageData);
+
+    //             // Enregistrer l'entité image dans la base de données
+    //             $entityManager = $this->getDoctrine()->getManager();
+    //             $entityManager->persist($image);
+    //             $entityManager->flush();
+
+    //             // Rediriger ou afficher un message de réussite
+    //         }
+    //     }
+
+    //     return $this->render('image/upload.html.twig', [
+    //         'form' => $form->createView(),
+    //     ]);
+    // }
 }
