@@ -1,11 +1,12 @@
 {# templates/home/index.html.twig #}
 
 {% extends 'base.html.twig' %}
+{% block title %}Titre{% endblock %}
 {% block body %}
 <body>
 
     <!-- Barre de navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    {# <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <a class="navbar-brand" href="#">Mon Site</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,14 +24,32 @@
                 </ul>
             </div>
         </div>
-    </nav>
+    </nav> #}
 
     <!-- Corps de la page -->
     <div class="container mt-5">
+    <div class="row">
+        {% for menu in menus %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card">
+                    <img src="{{ menu.image }}" class="card-img-top img-fluid" alt="">
+                    <div class="card-body">
+                        <h2 class="card-title">{{ menu.name }}</h2>
+                        <h4 class="card-text">{{ menu.price }}</h4>
+                        <p class="card-text">{{ menu.description }}</p>
+                        {# <a href="{{ menu.link }}" class="btn btn-primary">Voir plus</a> #}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+    {# <div class="container mt-5">
         <div class="row">
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card">
-                    <img src="..." class="card-img-top" alt="...">
+               
+                    <img src="images/image4.jpg" class="card-img-top img-fluid" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Menu 1</h5>
                         <p class="card-text">Description du menu 1.</p>
@@ -90,18 +109,18 @@
             </div>
             <!-- Ajoutez d'autres cartes de menu ici -->
         </div>
-    </div>
+    </div> #}
 <br>
 <!-- Fin de la section des menus -->
 <!-- Debut de la section des reservations -->
-<div class="container">
+{# <div class="container">
 <div class="row">
 <div class="col-12 text-center">
 <h2>Réservez votre Menus</h2>
 <hr>
 </div>
-</div>
-<form action="/reservation/create" method="post">
+</div> #}
+{# <form action="/reservation/create" method="post">
 
 <div class="row">
 <div class="col-sm-8 offset-sm-2">
@@ -135,7 +154,7 @@
 <button type="submit" class="btn btn-primary">Envoyer</button>
 </div>
 </div>
-</form>
+</form> #}
 <!-- Affichage des command de menus -->
 
 {# <h1 class="text-center">Mes Réservations</h1>

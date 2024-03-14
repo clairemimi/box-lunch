@@ -13,12 +13,18 @@ use Symfony\Component\Routing\Attribute\Route;
 
 #[Route('/menu')]
 class MenuController extends AbstractController
+
 {
     #[Route('/', name: 'app_menu_index', methods: ['GET'])]
     public function index(MenuRepository $menuRepository): Response
+    
     {
+        $menus = [];
+
+        // Passer les menus au modèle Twig pour le rendu
         return $this->render('menu/index.html.twig', [
             'menus' => $menuRepository->findAll(),
+            'menus' => $menus,
         ]);
     }
 
