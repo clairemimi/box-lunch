@@ -18,7 +18,7 @@ class MenuType extends AbstractType
     {
         $builder
             ->add('name', TextType::class,[
-                'attr' => ['Placeholder' =>"Entre votre Nom"]
+                'attr' => ['Placeholder' =>"Entrez le nom du menu"]
             ])
             ->add('price')
             ->add('description', TextareaType::class)

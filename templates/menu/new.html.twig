@@ -5,14 +5,20 @@
 
 {% block body %}
     <h1>Create new Menu</h1>
+    <h1>Create New Menu</h1>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button type="submit" class="btn btn-primary">Create</button>
+    {{ form_end(form) }}
    
-{% set menuContent %}
+{# {% set menuContent %}
      <div class="form-group">
     <label for="menu" class="col-sm-2 control-label">Menu: </label>
     {{form_widget(form.name)}}
    <div class="col-sm-10">
 {% endset %}
-{{ menuContent }}
+{{ menuContent }} #}
 
     {{ include('menu/_form.html.twig') }}
 

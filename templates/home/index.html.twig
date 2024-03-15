@@ -29,19 +29,22 @@
     <!-- Corps de la page -->
     <div class="container mt-5">
     <div class="row">
+      <div class="col-lg-4 col-md-6 mb-4 p-4">
+    <div class="d-flex justify-content-center flex-wrap">
         {% for menu in menus %}
-            <div class="col-lg-4 col-md-6 mb-4">
+          
                 <div class="card">
                     <img src="{{ menu.image }}" class="card-img-top img-fluid" alt="">
                     <div class="card-body">
                         <h2 class="card-title">{{ menu.name }}</h2>
                         <h4 class="card-text">{{ menu.price }}</h4>
                         <p class="card-text">{{ menu.description }}</p>
-                        {# <a href="{{ menu.link }}" class="btn btn-primary">Voir plus</a> #}
+                        <a href="{{ path('app_home_detail', {'id':menu.id } ) }}" class="btn btn-primary">Voir plus</a> 
                     </div>
                 </div>
-            </div>
+         
         {% endfor %}
+        </div>
     </div>
 </div>
     {# <div class="container mt-5">
@@ -178,7 +181,7 @@
         </div>
     </footer> #}
 
-    <script src="{{ asset('build/js/bootstrap.bundle.min.js') }}"></script>
+    {# <script src="{{ asset('build/js/bootstrap.bundle.min.js') }}"></script> #}
 
 </body>
 {% endblock %}
